@@ -4,6 +4,8 @@
 import math
 
 def make_empty_board():
+
+    # the function initializes and empty board and returns it
     return [
         [None, None, None],
         [None, None, None],
@@ -11,19 +13,28 @@ def make_empty_board():
     ]
 
 def print_board(board):
+    # Function takes a board as an input and prints it
     for row in board:
         print(row)
 
 def print_board_positions(board):
-    print("Board square positions:")
-    print("1 2 3")
-    print("4 5 6")
-    print("7 8 9")
 
-    # for i in range(1,10):
-    #     if board[i-1] == None:
-    #         print(i)
-        # else print (board[i])
+    # Display various positions on the board where values can be entered
+    print("\nBoard square positions available to pick (the # ones are taken, you can pick any of the numbers):")
+    # print("1 2 3")
+    # print("4 5 6")
+    # print("7 8 9")
+    x = [[1,2,3], [4, 5, 6], [7, 8, 9]]
+
+    for i in range(0,9):
+        board_x = int(i / 3)
+        board_y = math.ceil(i % 3)
+        if board[board_x][board_y] != None:
+            x[board_x][board_y] = ("#")
+        
+    for row in x:
+        print(row)
+
 
 
 def update_board(board, index, turn):
@@ -33,7 +44,7 @@ def update_board(board, index, turn):
     index = int(index)
 
     assert index > 0 and index < 10
-    
+
     if (index < 1  or index > 9):
         print("Sorry, enter a number between 1 and 9")
 

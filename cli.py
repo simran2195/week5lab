@@ -23,6 +23,7 @@ if __name__ == '__main__':
     print("Player 2 has symbol O (Capital O)")
 
 
+
     # functions to implement the functioning of the code
 
     while winner == None:
@@ -38,7 +39,10 @@ if __name__ == '__main__':
 
 
         # TODO: Input a move from the player.
-        input_index = input("\nChoose a position to add your symbol: ")
+        print("\n==> Player ", turn)
+        input_index = input("Choose a position to add your symbol: ")
+        if not isinstance(int(input_index), int):
+            raise TypeError("Please enter an integer")
 
         # TODO: Update the board.
         board = update_board(board, input_index, turn)
@@ -51,7 +55,9 @@ if __name__ == '__main__':
         winner = get_winner(board)  # FIXME
 
     if winner!= None:
-        print("Yayyy, ", other_player(turn), " won!")
+        print("\n---------------------------------------------")
+        print("--------- Yayyy, player ", other_player(turn), " won! ------------")
+        print("---------------------------------------------")
 
 
 
