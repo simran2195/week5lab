@@ -39,8 +39,6 @@ def print_board_positions(board):
 
 def update_board(board, index, turn):
 
-    # print(index)
-    # print(type(int(index)))
     index = int(index)
 
     assert index > 0 and index < 10
