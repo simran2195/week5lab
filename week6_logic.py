@@ -33,7 +33,7 @@ class TicTacToeGame:
 		# print(type(self.game_type))
 
 		if self.game_type == 1:
-			print(" ------------------ Playing againt bot! -----------------------")
+			print("\n\n------------------ Playing againt bot! -----------------------")
 			self.one_player_game()
 		elif self.game_type == 2:
 			self.two_player_game()
@@ -42,7 +42,7 @@ class TicTacToeGame:
 
 	def one_player_game(self):
 		while self.winner == None:
-			print("\n\n-------------------------------\n")
+			# print("\n\n-------------------------------\n")
 
 
 			# TODO: Show the board to the user.
@@ -53,23 +53,27 @@ class TicTacToeGame:
 
 			# TODO: Input a move from the player.
 			print("\n==> Player ", self.turn)
-			self.input_index = input("Choose a position to add your symbol: ")
-			if not isinstance(int(self.input_index), int):
-				raise TypeError("Please enter an integer")
-
-			# TODO: Update the board.
-			self.board = self.update_board(self.board, self.input_index, self.turn)
+			
 
 			# TODO: Update who's turn it is.
-			self.turn = self.other_player(self.turn)
 			if self.turn == 'O':
+				print("\n\nBot playing!!")
 				self.bot_play(self.turn)
+				self.winner = self.get_winner(self.board)
 
+
+			elif self.turn == 'X':
+				self.input_index = input("Choose a position to add your symbol: ")
+				if not isinstance(int(self.input_index), int):
+					raise TypeError("Please enter an integer")
+
+				# TODO: Update the board.
+				self.board = self.update_board(self.board, self.input_index, self.turn)
+				self.winner = self.get_winner(self.board)
 
 
 			self.turn = self.other_player(self.turn)
 
-			self.winner = self.get_winner(self.board)
 
 		if self.winner!= None:
 			print("\n---------------------------------------------")
@@ -78,18 +82,19 @@ class TicTacToeGame:
 
 
 
+
+
 	def bot_play(self, turn):
-
-		print("\n\nBot playing!!")
-
 		board_x = random.randint(0,2)
 		board_y = random.randint(0,2)
 
 		if (self.board[board_x][board_y] != None):
-			self.bot_play(self, self.turn)
+			self.bot_play(self.turn)
 		else:
-			print('Bot chose index ', board_x, ', ', board_y)
+			print('----> Bot chose index ', board_x, ', ', board_y)
 			self.board[board_x][board_y] = 'O'
+
+
 
 
 	def two_player_game(self):
